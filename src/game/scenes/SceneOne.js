@@ -21,13 +21,14 @@ export class SceneOne extends Scene {
   }
 
   preload() {
+    this.add.image(512, 384, 'background');
     this.theText = this.add.text(16, 16, this.theText, {
       fontSize: '32px',
-      fill: '#000',
+      fill: '#ffffff',
     });
     this.ianTextControl = this.add.text(150, 320, this.ianTextControl, {
       fontSize: '20px',
-      fill: '#000',
+      fill: '#ffffff',
     });
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -107,6 +108,8 @@ export class SceneOne extends Scene {
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.Ian, this.platforms);
     this.physics.add.collider(this.clothes, this.platforms);
+    // this.cameras.main.setBackgroundColor(0x00ff00);
+    // this.add.image(512, 384, 'background').setAlpha(0.5);
   }
   update() {
     if (this.screenTouch) {
