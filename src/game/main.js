@@ -33,32 +33,32 @@ const StartGame = (parent) => {
   return new Game({ ...config, parent });
 };
 
-function resizeApp() {
-  //screen.orientation.lock('portrait');
-  //ScreenOrientation.lock('portrait');
-  // Width-height-ratio of game resolution
-  // Replace 360 with your game width, and replace 640 with your game height
-  let game_ratio = 1200 / 800;
+// function resizeApp() {
+//   //screen.orientation.lock('portrait');
+//   //ScreenOrientation.lock('portrait');
+//   // Width-height-ratio of game resolution
+//   // Replace 360 with your game width, and replace 640 with your game height
+//   let game_ratio = 1200 / 800;
 
-  // Make div full height of browser and keep the ratio of game resolution
-  let div = document.getElementById('phaser-app');
-  div.style.width = window.innerHeight + 'px';
-  div.style.height = window.innerHeight + 'px';
-  // * game_ratio
-  // Check if device DPI messes up the width-height-ratio
-  let canvas = document.getElementsByTagName('canvas')[0];
+//   // Make div full height of browser and keep the ratio of game resolution
+//   let div = document.getElementById('phaser-app');
+//   div.style.width = window.innerHeight + 'px';
+//   div.style.height = window.innerHeight + 'px';
+//   // * game_ratio
+//   // Check if device DPI messes up the width-height-ratio
+//   let canvas = document.getElementsByTagName('canvas')[0];
 
-  let dpi_w = parseInt(div.style.width) / canvas.width;
-  let dpi_h = parseInt(div.style.height) / canvas.height;
+//   let dpi_w = parseInt(div.style.width) / canvas.width;
+//   let dpi_h = parseInt(div.style.height) / canvas.height;
 
-  let height = window.innerHeight * (dpi_w / dpi_h);
-  let width = height * game_ratio;
+//   let height = window.innerHeight * (dpi_w / dpi_h);
+//   let width = height * game_ratio;
 
-  // Scale canvas
-  canvas.style.width = width + 'px';
-  canvas.style.height = height + 'px';
-}
+//   // Scale canvas
+//   canvas.style.width = width + 'px';
+//   canvas.style.height = height + 'px';
+// }
 
-window.addEventListener('resize', resizeApp);
+// window.addEventListener('resize', resizeApp);
 
 export default StartGame;
