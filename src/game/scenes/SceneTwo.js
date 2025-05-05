@@ -16,7 +16,8 @@ export class SceneTwo extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, 'sky').setScale(2);
+    this.cameras.main.setBackgroundColor(0xff0000);
+    this.add.image(512, 384, 'background').setAlpha(0.5);
     // this.add.image(600, 450, 'schedule').setScale(0.5);
 
     this.ianTextControl = 'Oh No! What have you done to poor Joe???';
@@ -36,7 +37,7 @@ export class SceneTwo extends Phaser.Scene {
       fill: '#fff',
     });
 
-    this.player = this.physics.add.sprite(-600, -6000, 'dude');
+    this.player = this.physics.add.sprite(-400, -3000, 'dude');
     this.player.flipX = true;
     this.player.scale = 3;
   }
