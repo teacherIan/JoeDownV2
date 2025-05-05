@@ -50,22 +50,6 @@ export class SceneOne extends Scene {
     this.player.body.setSize(0.5);
     this.player.scale = 2;
 
-    //touch screen
-    this.input.on(
-      'pointerdown',
-      function () {
-        //this.moveLeft = !this.moveLeft;
-        this.screenTouch = true;
-        this.player.setVelocityX(25);
-        this.player.anims.play('right', true);
-        this.player.flipX = true;
-        if (this.player.body.touching.down) {
-          this.player.setVelocityY(-100);
-        }
-      },
-      this
-    );
-
     this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 7 }),
@@ -96,10 +80,6 @@ export class SceneOne extends Scene {
 
     this.platforms = this.physics.add.staticGroup();
 
-    //platforms.create(200, 100, "platform")
-    //platforms.create(300, 200, "platform").setScale(0.5).refreshBody();
-    //platforms.create(400, 600, "platform").setScale(2).refreshBody();
-
     //ground platform
     this.platforms.create(100, 590, 'platform').refreshBody();
     //Ian's platform
@@ -109,9 +89,7 @@ export class SceneOne extends Scene {
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.Ian, this.platforms);
-    this.physics.add.collider(this.clothes, this.platforms); // Add game objects here // Add swipe detection
-    // this.cameras.main.setBackgroundColor(0x00ff00);
-    // this.add.image(512, 384, 'background').setAlpha(0.5);
+    this.physics.add.collider(this.clothes, this.platforms);
 
     this.input.on('pointerdown', (pointer) => {
       this.swipeStartX = pointer.x;
@@ -121,6 +99,11 @@ export class SceneOne extends Scene {
       this.swipeEndX = pointer.x;
       this.handleSwipe();
     });
+  }
+
+  create() {
+    let music = this.sound.add('catfish');
+    music.play();
   }
 
   handleSwipe() {
@@ -151,23 +134,23 @@ export class SceneOne extends Scene {
     if (this.player.y > 1500) {
       this.scene.start('sceneTwo');
     }
-    if (this.screenTouch === false) {
-      if (this.cursors.left.isDown) {
-        this.player.setVelocityX(-50);
-        this.player.anims.play('left', true);
-        this.player.flipX = false;
-      } else if (this.cursors.right.isDown) {
-        this.player.setVelocityX(50);
-        this.player.anims.play('right', true);
-        this.player.flipX = true;
-      } else {
-        this.player.setVelocityX(0);
-        this.player.anims.play('turn', true);
-      }
-      if (this.cursors.up.isDown && this.player.body.touching.down) {
-        this.player.setVelocityY(-100);
-      }
+    // if (this.screenTouch === false) {
+    if (this.cursors.left.isDown) {
+      this.player.setVelocityX(-50);
+      this.player.anims.play('left', true);
+      this.player.flipX = false;
+    } else if (this.cursors.right.isDown) {
+      this.player.setVelocityX(50);
+      this.player.anims.play('right', true);
+      this.player.flipX = true;
+    } else {
+      this.player.setVelocityX(0);
+      this.player.anims.play('turn', true);
     }
+    if (this.cursors.up.isDown && this.player.body.touching.down) {
+      this.player.setVelocityY(-100);
+    }
+    // }
 
     if (this.player.x > 200 && this.ianChange === false) {
       this.Ian.anims.play('ianTurn', true);
@@ -190,7 +173,7 @@ export class SceneOne extends Scene {
       this.theNumber = this.theNumber + 100;
       this.player.anims.play('right', true);
       this.player.flipX = true;
-      this.screenTouch = true;
+      //   this.screenTouch = true;
       this.check = true;
     } else if (!this.moveLeft && this.check === true) {
       this.player.setVelocityX(0);

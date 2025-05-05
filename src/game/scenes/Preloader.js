@@ -25,12 +25,12 @@ export class Preloader extends Scene {
   preload() {
     //  Load the assets for the game - Replace with your own assets
     this.load.setPath('assets');
-
     this.load.image('logo', 'logo.png');
 
     //my assets
 
     this.load.audio('catfish', 'Catfishgamesmall.mp3');
+
     this.load.image('bomb', 'bomb.png');
     this.load.image('platform', 'platform.png');
     this.load.image('sky', 'sky.png');
@@ -48,6 +48,8 @@ export class Preloader extends Scene {
   }
 
   create() {
+    console.log('From Preloder');
+
     //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
     //  For example, you can define global animations here, so we can use them in other scenes.
 
