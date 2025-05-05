@@ -134,23 +134,23 @@ export class SceneOne extends Scene {
     if (this.player.y > 1500) {
       this.scene.start('sceneTwo');
     }
-    // if (this.screenTouch === false) {
-    if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-50);
-      this.player.anims.play('left', true);
-      this.player.flipX = false;
-    } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(50);
-      this.player.anims.play('right', true);
-      this.player.flipX = true;
-    } else {
-      this.player.setVelocityX(0);
-      this.player.anims.play('turn', true);
+    if (this.screenTouch === false) {
+      if (this.cursors.left.isDown) {
+        this.player.setVelocityX(-50);
+        this.player.anims.play('left', true);
+        this.player.flipX = false;
+      } else if (this.cursors.right.isDown) {
+        this.player.setVelocityX(50);
+        this.player.anims.play('right', true);
+        this.player.flipX = true;
+      } else {
+        this.player.setVelocityX(0);
+        this.player.anims.play('turn', true);
+      }
+      if (this.cursors.up.isDown && this.player.body.touching.down) {
+        this.player.setVelocityY(-100);
+      }
     }
-    if (this.cursors.up.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-100);
-    }
-    // }
 
     if (this.player.x > 200 && this.ianChange === false) {
       this.Ian.anims.play('ianTurn', true);
