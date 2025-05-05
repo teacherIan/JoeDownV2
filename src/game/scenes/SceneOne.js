@@ -17,7 +17,9 @@ export class SceneOne extends Scene {
     //Ian talk
     this.ianText = 'How are you Joe?';
     this.ianTextControl = '';
-    //this.scene.scale.lockOrientation('portrait');
+    // this.scene.scale.lockOrientation('portrait');
+    this.swipeStartX = 0;
+    this.swipeEndX = 0;
   }
 
   preload() {
@@ -107,15 +109,39 @@ export class SceneOne extends Scene {
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.Ian, this.platforms);
-    this.physics.add.collider(this.clothes, this.platforms);
+    this.physics.add.collider(this.clothes, this.platforms); // Add game objects here // Add swipe detection
     // this.cameras.main.setBackgroundColor(0x00ff00);
     // this.add.image(512, 384, 'background').setAlpha(0.5);
-  }
-  update() {
-    if (this.screenTouch) {
-      this.player.setVelocityX(25);
-    }
 
+    this.input.on('pointerdown', (pointer) => {
+      this.swipeStartX = pointer.x;
+    });
+
+    this.input.on('pointerup', (pointer) => {
+      this.swipeEndX = pointer.x;
+      this.handleSwipe();
+    });
+  }
+
+  handleSwipe() {
+    const swipeDistance = this.swipeEndX - this.swipeStartX;
+
+    if (swipeDistance > 50) {
+      // Swipe right
+      console.log('Swiped right');
+      this.player.setVelocityX(50);
+      this.player.anims.play('right', true);
+      this.player.flipX = true;
+    } else if (swipeDistance < -50) {
+      // Swipe left
+      console.log('Swiped left');
+      this.player.setVelocityX(-50);
+      this.player.anims.play('left', true);
+      this.player.flipX = false;
+    }
+  }
+
+  update() {
     if (this.player.x > 302) {
       this.player.angle += 2;
     }
