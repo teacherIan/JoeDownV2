@@ -138,6 +138,9 @@ export class SceneOne extends Scene {
       this.player.setVelocityX(-50);
       this.player.anims.play('left', true);
       this.player.flipX = false;
+    } else {
+      this.player.setVelocityX(0);
+      this.player.anims.stop();
     }
   }
 
