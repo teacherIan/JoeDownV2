@@ -107,6 +107,7 @@ export class SceneOne extends Scene {
   }
 
   handleSwipe() {
+    this.screenTouch === true;
     const swipeDistance = this.swipeEndX - this.swipeStartX;
 
     if (swipeDistance > 50) {
