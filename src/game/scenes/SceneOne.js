@@ -9,7 +9,7 @@ export class SceneOne extends Scene {
     this.ianChange = false;
     this.theNumber = 0;
     this.theText =
-      'You are Joe.\nUse the arrow keys to move & Jump.\nGo talk to Ian.';
+      'You are Joe.\nUse the arrow keys, or swipe to move & jump.\nGo talk to Ian.';
     //this.versionText = "Version 0.84";
     this.check = false;
     this.screenTouch = false;
