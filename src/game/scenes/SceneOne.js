@@ -8,30 +8,21 @@ export class SceneOne extends Scene {
     this.ScoreText = '';
     this.ianChange = false;
     this.theNumber = 0;
-    this.theText =
-      'You are Joe.\nUse the arrow keys, or swipe to move & jump.\nGo talk to Ian.';
-    //this.versionText = "Version 0.84";
+    this.textA = 'This is a demo project';
+
     this.check = false;
     this.screenTouch = false;
     this.moveLeft = false;
     //Ian talk
-    this.ianText = 'How are you Joe?';
+    this.ianText = 'Text B';
     this.ianTextControl = '';
-    // this.scene.scale.lockOrientation('portrait');
+
     this.swipeStartX = 0;
     this.swipeEndX = 0;
   }
 
   preload() {
     this.add.image(512, 384, 'background');
-    this.theText = this.add.text(16, 16, this.theText, {
-      fontSize: '32px',
-      fill: '#ffffff',
-    });
-    this.ianTextControl = this.add.text(150, 320, this.ianTextControl, {
-      fontSize: '20px',
-      fill: '#ffffff',
-    });
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -104,6 +95,16 @@ export class SceneOne extends Scene {
   create() {
     let music = this.sound.add('catfish');
     music.play();
+
+    this.theText = this.add.bitmapText(16, 16, 'arcadeFont', this.textA);
+
+    this.ianTextControl = this.add.bitmapText(
+      150,
+      320,
+      'arcadeFont',
+      this.ianTextControl,
+      20
+    );
   }
 
   handleSwipe() {
@@ -158,16 +159,13 @@ export class SceneOne extends Scene {
       this.Ian.y = 480;
       this.ianChange = true;
       this.Ian.body.offset.y = -2.6;
-      this.ianTextControl.setText(
-        `No clothes again, eh Joe?! \nJump up here. \nI've got some extra for ya.`
-      );
+      this.ianTextControl.setText('Text C');
       this.clothes.visible = true;
     }
     if (this.cursors.space.isDown) {
       this.theNumber = this.theNumber + 1;
     }
     if (this.theNumber > 20) {
-      //this.theText.setText("Do you notice how slow you move and \n how hard it is for you to jump? \n It's because your so fat... \n Waddle on over to you're friend Ian. ");
     }
     if (this.moveLeft) {
       this.player.setVelocityX(25);

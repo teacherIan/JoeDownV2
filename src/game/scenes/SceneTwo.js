@@ -6,23 +6,14 @@ export class SceneTwo extends Phaser.Scene {
     this.ianTextControlThree = '';
   }
 
-  preload() {
-    // this.load.spritesheet('dude', 'JoeNewSheet.png', {
-    //   frameWidth: 59,
-    //   frameHeight: 52.5,
-    // });
-    // this.load.image('sky', 'sky.png');
-    // this.load.image('schedule', 'Schedule.png');
-  }
-
   create() {
     this.cameras.main.setBackgroundColor(0xff0000);
     this.add.image(512, 384, 'background').setAlpha(0.5);
     // this.add.image(600, 450, 'schedule').setScale(0.5);
 
-    this.ianTextControl = 'Oh No! What have you done to poor Joe???';
-    this.ianTextControlTwo = "Why didn't you jump up on the platform???";
-    this.ianTextControlThree = 'waaa';
+    this.ianTextControl = 'Text A';
+    this.ianTextControlTwo = 'Text B';
+    this.ianTextControlThree = 'Text C';
 
     this.ianTextControl = this.add.text(5, 5, this.ianTextControl, {
       fontSize: '40px',

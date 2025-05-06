@@ -1,12 +1,10 @@
 import { Boot } from './scenes/Boot';
-import { Game as MainGame } from './scenes/Game';
-import { GameOver } from './scenes/GameOver';
-import { MainMenu } from './scenes/MainMenu';
 import { Preloader } from './scenes/Preloader';
 import { SceneOne } from './scenes/SceneOne';
 import { SceneTwo } from './scenes/SceneTwo';
 import { SceneThree } from './scenes/SceneThree';
 import { SceneFour } from './scenes/SceneFour';
+import { SceneFive } from './scenes/SceneFive';
 import { DodgeGame } from './scenes/DodgeGame';
 import { AUTO, Game } from 'phaser';
 
@@ -33,14 +31,12 @@ const config = {
   scene: [
     Boot,
     Preloader,
+    SceneFour,
     DodgeGame,
     SceneOne,
     SceneTwo,
     SceneThree,
-    SceneFour,
-    MainMenu,
-    MainGame,
-    GameOver,
+    SceneFive,
   ],
 
   audio: {

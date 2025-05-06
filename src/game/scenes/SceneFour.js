@@ -15,20 +15,19 @@ export class SceneFour extends Phaser.Scene {
   create() {
     this.add.image(512, 384, 'background');
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.add.image(400, 300, 'sky').setScale(2.5);
-    this.Ian = this.add.sprite(600, 480, 'ian');
-    this.Ian.scale = 6;
+    this.ian = this.add.sprite(this.scale.width / 2, 480, 'ian');
+    this.ian.scale = 6;
 
-    this.add.image(300, 480, 'dude').setScale(5).flipX = true;
-    this.add.image(100, 480, 'dude').setScale(5).flipX = true;
-    this.add.image(900, 480, 'dude').setScale(5);
-    this.add.image(1100, 480, 'dude').setScale(5);
+    this.add.image(this.ian.width, 480, 'dude').setScale(5).flipX = true;
+    this.add.image(this.scale.width / 4, 480, 'dude').setScale(5).flipX = true;
+    this.add.image(this.scale.width * 0.75, 480, 'dude').setScale(5);
+    this.add.image(this.scale.width - this.ian.width, 480, 'dude').setScale(5);
 
     this.lowScoreText = 'text Low Score';
     this.midScoreText = 'Text Mid Score';
     this.highScoreText = 'Text High Score';
     this.textTwo = 'You scored: ' + this.number + ' points';
-    this.add.text(50, 300, "Press the 'up' key to continue.", {
+    this.add.text(50, 300, 'Press Any Key to Continue.', {
       fontSize: '30px',
       fill: '#fff',
     });
@@ -57,10 +56,11 @@ export class SceneFour extends Phaser.Scene {
       },
       this
     );
-  }
-  update() {
-    if (this.cursors.up.isDown) {
+
+    this.input.keyboard.on('keydown', () => {
       this.scene.start('SceneFive');
-    }
+    });
   }
+
+  update() {}
 }
