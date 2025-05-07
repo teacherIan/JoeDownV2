@@ -49,17 +49,19 @@ export class SceneFour extends Phaser.Scene {
       });
     }
 
-    this.input.on(
-      'pointerdown',
-      function () {
-        this.scene.start('SceneFive');
-      },
-      this
-    );
+    setTimeout(() => {
+      this.input.on(
+        'pointerdown',
+        function () {
+          this.scene.start('SceneFive');
+        },
+        this
+      );
 
-    this.input.keyboard.on('keydown', () => {
-      this.scene.start('SceneFive');
-    });
+      this.input.keyboard.on('keydown', () => {
+        this.scene.start('SceneFive');
+      });
+    }, 3000);
   }
 
   update() {}

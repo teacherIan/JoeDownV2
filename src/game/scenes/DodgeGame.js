@@ -36,34 +36,6 @@ export class DodgeGame extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.platforms);
 
-    this.anims.create({
-      key: 'left',
-      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 7 }),
-      frameRate: 30,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: 'turn',
-      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 0 }),
-      frameRate: 0,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: 'right',
-      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 7 }),
-      frameRate: 30,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: 'ianTurn',
-      frames: this.anims.generateFrameNumbers('ianLeft', { start: 0, end: 0 }),
-      frameRate: 5,
-      repeat: -1,
-    });
-
     const ians = this.physics.add.group();
 
     const ianGen = () => {

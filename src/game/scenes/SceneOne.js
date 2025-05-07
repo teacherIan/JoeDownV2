@@ -3,22 +3,31 @@ import { Scene } from 'phaser';
 export class SceneOne extends Scene {
   constructor() {
     super('sceneOne');
-    console.log(this);
     this.score = 0;
     this.ScoreText = '';
     this.ianChange = false;
     this.theNumber = 0;
     this.textA = 'This is a demo project';
+    this.textACopy = '';
 
     this.check = false;
     this.screenTouch = false;
     this.moveLeft = false;
-    //Ian talk
+    //ian talk
     this.ianText = 'Text B';
     this.ianTextControl = '';
 
     this.swipeStartX = 0;
     this.swipeEndX = 0;
+
+    this.textUpdater();
+  }
+
+  textUpdater() {
+    console.log('From Text Updater');
+    if (this.textACopy.length < this.textA.length) {
+      this.textACopy = this.textACopy.concat('A');
+    }
   }
 
   preload() {
@@ -30,9 +39,9 @@ export class SceneOne extends Scene {
     this.clothes.scale = 0.5;
     this.clothes.visible = false;
 
-    this.Ian = this.physics.add.sprite(450, 480, 'ian');
-    this.Ian.scale = 2.4;
-    this.Ian.body.offset.y = -1.5;
+    this.ian = this.physics.add.sprite(450, 480, 'ian');
+    this.ian.scale = 2.4;
+    this.ian.body.offset.y = -1.5;
 
     this.player = this.physics.add.sprite(100, 515, 'dude');
     this.player.setBounce(0.2);
@@ -73,13 +82,13 @@ export class SceneOne extends Scene {
 
     //ground platform
     this.platforms.create(100, 590, 'platform').refreshBody();
-    //Ian's platform
+    //ian's platform
     this.platforms.create(525, 570, 'platform').refreshBody();
     this.platforms.create(1000, 520, 'platform').refreshBody();
     this.platforms.create(1300, 400, 'platform').refreshBody();
 
     this.physics.add.collider(this.player, this.platforms);
-    this.physics.add.collider(this.Ian, this.platforms);
+    this.physics.add.collider(this.ian, this.platforms);
     this.physics.add.collider(this.clothes, this.platforms);
 
     this.input.on('pointerdown', (pointer) => {
@@ -105,6 +114,13 @@ export class SceneOne extends Scene {
       this.ianTextControl,
       20
     );
+
+    this.time.addEvent({
+      delay: 1000, // 1000 ms = 1 second
+      callback: this.textUpdater, // Function to call
+      callbackScope: this, // Scope of the callback
+      loop: true, // Repeat the event
+    });
   }
 
   handleSwipe() {
@@ -130,6 +146,8 @@ export class SceneOne extends Scene {
   }
 
   update() {
+    this.theText.text = this.textACopy;
+
     if (this.player.x > 302) {
       this.player.angle += 2;
     }
@@ -155,17 +173,15 @@ export class SceneOne extends Scene {
     }
 
     if (this.player.x > 200 && this.ianChange === false) {
-      this.Ian.anims.play('ianTurn', true);
-      this.Ian.y = 480;
+      this.ian.anims.play('ianTurn', true);
+      this.ian.y = 480;
       this.ianChange = true;
-      this.Ian.body.offset.y = -2.6;
+      this.ian.body.offset.y = -2.6;
       this.ianTextControl.setText('Text C');
       this.clothes.visible = true;
     }
     if (this.cursors.space.isDown) {
       this.theNumber = this.theNumber + 1;
-    }
-    if (this.theNumber > 20) {
     }
     if (this.moveLeft) {
       this.player.setVelocityX(25);
